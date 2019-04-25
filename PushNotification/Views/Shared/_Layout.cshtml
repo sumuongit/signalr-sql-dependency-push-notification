@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">  
+                <span class="noti glyphicon glyphicon-bell"><span class="count">&nbsp;</span></span>            
+                <div class="noti-content">
+                    <div class="noti-top-arrow"></div>
+                    <ul id="notiContent"></ul>
+                </div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Push Notification", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+   
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+   
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .noti-content {
+            position: fixed;
+            right: 100px;
+            background: #e5e5e5;           
+            top: 47px;
+            width: 250px;
+            display: none;
+            border: 1px solid #9E988B;
+        }
+
+        ul#notiContent {
+            max-height: 200px;
+            overflow: auto;
+            padding: 0px;
+            margin: 0px;
+            padding-left: 20px;
+        }
+
+        ul#notiContent li {
+            margin: 3px;
+            padding: 6px;
+            background: #fff;
+        }
+
+        .noti-top-arrow {
+            border-color: transparent;
+            border-bottom-color: #F5DEB3;
+            border-style: dashed dashed solid;
+            border-width: 0 8.5px 8.5px;
+            position: absolute;
+            right: 32px;
+            top: -8px;
+        }
+
+        span.noti {
+            color: #ffffff;
+            margin: 15px 0px 15px 0px;
+            position: fixed;
+            right: 100px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        span.count {
+            position: relative;
+            top: -10px;            
+        }
+    </style>
+   
+    <script type="text/javascript">
+        $(function () {
+            //CLICK ON NOTIFICATION ICON FOR SHOWING NOTIFICATION DETAILS
+            $('span.noti').click(function (e) {
+                e.stopPropagation();
+                $('.noti-content').show();
+                var count = 0;
+                count = parseInt($('span.count').html()) || 0;
+
+                //LOAD NOTIFICATION IF NOT LOADED ALREADY
+                if (count > 0) {
+                    updateNotification();                   
+                }
+                $('span.count', this).html('&nbsp;');              
+                $('span.count').css('background-color', '');               
+                $('span.count').css('padding', '');               
+            })
+
+            //HIDE NOTIFICATION
+            $('html').click(function () {
+                $('.noti-content').hide();
+            })
+
+            //UPDATE NOTIFICATION
+            function updateNotification() {
+                $('#notiContent').empty();
+                $('#notiContent').append($('<li>Loading...</li>'));
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/home/GetNotification',
+                    success: function (response) {
+                        $('#notiContent').empty();
+                        if (response.length  == 0) {
+                            $('#notiContent').append($('<li>No data available!!!</li>'));
+                        }
+                        $.each(response, function (index, value) {
+                            $('#notiContent').append($('<li><b>Name:</b> ' + value.PersonName + ' <b>Phone:</b> ' + value.PersonPhoneNo + ' <b>Address:</b> ' + value.PersonAddress + '</li>'));
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                })
+            }
+
+            //UPDATE NOTIFICATION COUNT
+            function updateNotificationCount() {
+                var count = 0;
+                count = parseInt($('span.count').html()) || 0;
+                count++;
+                $('span.count').html(count);               
+                $('span.count').css('background-color', '#fa3e3e');              
+                $('span.count').css('padding', '0px 4px 4px 4px');               
+            }
+
+            //SIGNALR JAVASCRIPT CODE FOR STARTING HUB
+            var notificationHub = $.connection.notificationHub;
+            $.connection.hub.start().done(function () {
+                console.log('Notification hub started');
+            });
+
+            //SIGNALR JAVASCRIPT CODE FOR COMPARING MESSAGE
+            notificationHub.client.notify = function (message) {
+                if (message && message.toLowerCase() == "added") {
+                    updateNotificationCount();
+                }
+            }
+        })
+    </script>
+</body>
+</html>
