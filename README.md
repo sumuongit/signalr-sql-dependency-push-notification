@@ -26,6 +26,11 @@ INSERT INTO [dbo].[PersonInformation]
            ,GETDATE())
 GO
 ```
+**Notification:**
+![Push Notification](https://github.com/sumuongit/signalr-sql-dependency-push-notification/blob/master/PushNotification/Images/PN1.PNG)
+
+**Notification Details:**
+![Push Notification](https://github.com/sumuongit/signalr-sql-dependency-push-notification/blob/master/PushNotification/Images/PN2.PNG)
 
 ## Database Scripts
 [Database Scripts](https://github.com/sumuongit/signalr-sql-dependency-push-notification/tree/master/PushNotification/Database)
