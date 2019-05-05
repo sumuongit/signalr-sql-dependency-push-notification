@@ -1,0 +1,4 @@
+signalr-sql-dependency-push-notification/Content/* linguist-vendored
+signalr-sql-dependency-push-notification/Scripts/* linguist-vendored
+
+*.sql linguist-detectable=true
