@@ -1,4 +1,8 @@
 PushNotification/Content/* linguist-vendored
 PushNotification/Scripts/* linguist-vendored
 
+PushNotification/Models/* linguist-language=ASP
+PushNotification/Views/* linguist-language=ASP
+PushNotification/Controllers/* linguist-language=ASP
+
 *.sql linguist-detectable=true
