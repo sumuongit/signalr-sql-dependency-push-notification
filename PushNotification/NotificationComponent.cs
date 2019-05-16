@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Data.SqlClient;
 using Microsoft.AspNet.SignalR;
 using PushNotification.Models;
