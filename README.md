@@ -279,10 +279,13 @@ This application is created with:
 * SQL Dependency
 	
 ## Setup
-To run this application, building the source locally using git:
+To clone and run this repository you will need [Git](https://git-scm.com/) installed on your computer. From your command line:
 
 ```
+# Clone this repositroy
 $ git clone https://github.com/sumuongit/signalr-sql-dependency-push-notification.git
+# Go into this repository
+$ cd signalr-sql-dependency-push-notification
 
 ```
 
