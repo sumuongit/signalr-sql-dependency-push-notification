@@ -284,7 +284,7 @@ To clone and run this repository you will need [Git](https://git-scm.com/) insta
 ```
 # Clone this repositroy
 $ git clone https://github.com/sumuongit/signalr-sql-dependency-push-notification.git
-# Go into this repository
+# Go into the repository
 $ cd signalr-sql-dependency-push-notification
 
 ```
