@@ -1,8 +1,11 @@
+# Exclude the following files or folders from language statistics
 PushNotification/Content/* linguist-vendored
 PushNotification/Scripts/* linguist-vendored
 
+# Include the following files or folders for language renaming
 PushNotification/Models/* linguist-language=ASP
 PushNotification/Views/* linguist-language=ASP
 PushNotification/Controllers/* linguist-language=ASP
 
+# Include the following files or folders for language detection
 *.sql linguist-detectable=true
