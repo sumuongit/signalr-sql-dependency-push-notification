@@ -3,9 +3,9 @@ PushNotification/Content/* linguist-vendored
 PushNotification/Scripts/* linguist-vendored
 
 # Include the following files or folders for language renaming
-PushNotification/Models/* linguist-language=ASP
+PushNotification/Models/* linguist-language=CSHARP
 PushNotification/Views/* linguist-language=ASP
-PushNotification/Controllers/* linguist-language=ASP
+PushNotification/Controllers/* linguist-language=CSHARP
 
 # Include the following files or folders for language detection
 *.sql linguist-detectable=true
