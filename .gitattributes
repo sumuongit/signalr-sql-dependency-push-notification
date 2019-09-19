@@ -3,7 +3,7 @@ PushNotification/Content/* linguist-vendored
 PushNotification/Scripts/* linguist-vendored
 
 # Include the following files or folders for language renaming
-PushNotification/Models/* linguist-language=CSHARP
+PushNotification/Models/* linguist-language=C#
 PushNotification/Views/* linguist-language=ASP
 PushNotification/Controllers/* linguist-language=CSHARP
 
