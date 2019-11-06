@@ -1,5 +1,6 @@
 ## Table of Contents
 * [General Info](#general-info)
+* [Features](#features)
 * [Implementation](#implementation)
 * [Database Scripts](#database-scripts)
 * [Technologies](#technologies)
@@ -9,6 +10,10 @@
 
 ## General Info
 A sample real time push notification application
+
+## Features
+* Notification Alert
+* Notification Details
 	
 ## Implementation
 The steps as following are the implementation of the real time push notification using SignalR and SQL Dependecy.
