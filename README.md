@@ -9,7 +9,7 @@
 * [License](#license)
 
 ## General Info
-A sample real time push notification application
+A sample real time push notification application using ASP.NET SignalR and SQL Dependency
 
 ## Features
 * Notification Alert
